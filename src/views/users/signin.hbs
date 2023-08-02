@@ -1,25 +1,61 @@
-<div class="row">
-  <div class="col-md-4 mx-auto">
-    <div class="card mt-4 text-center">
-      <div class="card-header">
-        <h1 class="h4">
-          Account Login
-        </h1>
-      </div>
-        <img class="rounded-circle mx-auto d-block logo m-4" src="/img/logo.png" alt="Logo">
-      <div class="card-body">
-        <form action="/users/signin" method="POST">
-          <div class="form-group">
-            <input type="email" class="form-control" name="email" placeholder="Email" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password">
-          </div>
-          <button class="btn btn-primary btn-block">
-            Ingresar 
-          </button>
-        </form>
-      </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Inicio de Sesión</title>
+    <!-- Enlace a Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos para el contenedor opaco */
+        .opaque-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 23.8%;
+            background-color: rgb(255, 255, 255); /* Ajusta el último valor (0.6) para cambiar la opacidad */
+            z-index: 9999; /* Asegura que el contenedor esté por encima de otros elementos */
+        }
+
+        /* Estilos para ajustar el tamaño del logo */
+        .logo {
+            max-width: 100px; /* Ajusta el valor según el tamaño deseado */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor opaco para tapar el contenido no deseado -->
+    <div class="opaque-container"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="card mt-4 text-center">
+                    <div class="card-header">
+                        <h1 class="h4">
+                            Account Login
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        <!-- Mueve la etiqueta <img> del logo aquí -->
+                        <img class="rounded-circle mx-auto d-block logo m-4" src="/img/logo.png" alt="Logo">
+                        <form action="/users/signin" method="POST">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <button class="btn btn-primary btn-block">
+                                Ingresar 
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <!-- No olvides incluir la librería de JavaScript de Bootstrap al final del cuerpo del documento -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
