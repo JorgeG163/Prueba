@@ -1,11 +1,14 @@
 const router = require("express").Router();
-
+const passport = require("passport")
 const {
   renderSignUpForm,
   singup,
   renderSigninForm,
   signin,
-  logout
+  logout,
+  showUsers,
+  addUser,
+  deleteUser
 } = require("../controllers/users.controller");
 
 // Routes
@@ -38,4 +41,6 @@ router.post("/users/add", addUser);
 // Ruta para borrar un usuario
 router.delete("/users/delete/:userId", deleteUser);
 
+
 module.exports = router;
+
