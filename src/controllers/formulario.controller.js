@@ -29,7 +29,7 @@ formularioCtrl.SaveForm = async (req, res) => {
 
 
     let errors = [];
-    const { nombre, apellido, programa, latitud, longitud, tipoArbol, file } = req.body;
+    const { nombre, apellido, programa, nombredelaespecie, características, estadodesalud, coordenadas, tipoArbol, file } = req.body;
 
     if (nombre.length < 3) {
       errors.push({ text: "Ingrese un nombre válido" });
@@ -45,8 +45,10 @@ formularioCtrl.SaveForm = async (req, res) => {
         nombre,
         apellido,
         programa,
-        latitud,
-        longitud,
+        nombredelaespecie,
+        características,
+        estadodesalud,
+        coordenadas,
         tipoArbol
       });
     } else {
@@ -55,9 +57,11 @@ formularioCtrl.SaveForm = async (req, res) => {
         nombre,
         apellido,
         programa,
+        nombredelaespecie,
+        características,
+        estadodesalud,
+        coordenadas,
         tipoArbol,
-        latitud,
-        longitud,
         archivocompleto
       });
 
@@ -79,7 +83,7 @@ formularioCtrl.SaveForm = async (req, res) => {
 formularioCtrl.formulario = async (req, res) => {
   try {
     let errors = [];
-    const { nombre, apellido, programa, latitud, longitud, tipoArbol } = req.body;
+    const { nombre, apellido, programa, nombredelaespecie, características, estadodesalud, coordenadas, tipoArbol } = req.body;
 
     if (nombre.length < 3) {
       errors.push({ text: "Ingrese un nombre válido" });
@@ -95,8 +99,10 @@ formularioCtrl.formulario = async (req, res) => {
         nombre,
         apellido,
         programa,
-        latitud,
-        longitud,
+        nombredelaespecie,
+        características,
+        estadodesalud,
+        coordenadas,
         tipoArbol
       });
     } else {
@@ -105,8 +111,10 @@ formularioCtrl.formulario = async (req, res) => {
         nombre,
         apellido,
         programa,
-        latitud,
-        longitud,
+        nombredelaespecie,
+        características,
+        estadodesalud,
+        coordenadas,
         tipoArbol
       });
 
