@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Información del Árbol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* Estilos de la galería y el efecto de agrandar la imagen */
     .gallery-container {
@@ -96,6 +97,17 @@
     .text-info142 {
       padding-left: 25px;
     }
+
+    /* Estilo para la tabla en dispositivos móviles */
+    @media (max-width: 767px) {
+      .table-responsive {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -114,21 +126,23 @@
       </div>
 
       <!-- Tabla para mostrar los datos -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Programa</th>
-            <th scope="col">Tipo de arbol</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Ver Características</th>
-          </tr>
-        </thead>
-        <tbody class="contenidoInfo">
-          <!-- Aquí se generará el contenido dinámicamente -->
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Programa</th>
+              <th scope="col">Tipo de arbol</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Ver Características</th>
+            </tr>
+          </thead>
+          <tbody class="contenidoInfo">
+            <!-- Aquí se generará el contenido dinámicamente -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
