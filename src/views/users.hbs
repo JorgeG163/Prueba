@@ -1,0 +1,83 @@
+<!-- users.hbs -->
+<h1>Lista de Usuarios</h1>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  a.delete-btn {
+    color: #ff5252;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+<a href="/datos" class="btn-datos">Ver Árboles</a>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>
+          <a href="#" onclick="confirmDelete('{{_id}}')" class="delete-btn">Borrar</a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script>
+  async function deleteUser(userId) {
+    try {
+      const response = await fetch(`/users/delete/${userId}`, { method: 'DELETE' });
+      if (response.ok) {
+        // Actualizar la tabla después de borrar el usuario
+        window.location.reload();
+      } else {
+        console.error('Error al borrar el usuario');
+      }
+    } catch (err) {
+      console.error('Error al borrar el usuario:', err);
+    }
+  }
+
+  function confirmDelete(userId) {
+    // Mostrar la advertencia con window.confirm()
+    const confirmed = window.confirm('¿Está seguro de borrar este usuario?');
+    if (confirmed) {
+      // Si el usuario acepta, llamar a la función deleteUser()
+      deleteUser(userId);
+    } else {
+      // Si el usuario cancela, no hacer nada
+      // Puedes mostrar un mensaje o realizar otra acción si lo deseas
+    }
+  }
+</script>
+
+<!-- Formulario para agregar usuarios -->
+<h2>Agregar Usuario</h2>
+<form action="/users/add" method="POST">
+  <input type="text" name="name" placeholder="Nombre" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Contraseña" required>
+  <button type="submit">Agregar Usuario</button>
+</form>
