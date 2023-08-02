@@ -65,4 +65,38 @@ usersCtrl.logout = (req, res) => {
   res.redirect("/users/signin");
 };
 
+usersCtrl.showUsers = async (req, res) => {
+  try {
+    const users = await User.find(); // Obtener todos los usuarios de la base de datos
+    res.render('users', { users }); // Renderizar la vista "users" con la lista de usuarios
+  } catch (err) {
+    console.error('Error al obtener los usuarios:', err);
+    res.status(500).send('Error al obtener los usuarios');
+  }
+};
+
+// Controlador para agregar un nuevo usuario
+usersCtrl.addUser = async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const newUser = new User({ name, email, password });
+    await newUser.save(); // Guardar el nuevo usuario en la base de datos
+    res.redirect("/users"); // Redirigir a la lista de usuarios después de agregar un usuario
+  } catch (err) {
+    res.status(500).send("Error al agregar el usuario.");
+  }
+};
+
+// Controlador para borrar un usuario
+usersCtrl.deleteUser = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    await User.findByIdAndDelete(userId); // Buscar y borrar el usuario por su ID
+    res.redirect('/users'); // Redirigir a la lista de usuarios después de borrar un usuario
+  } catch (err) {
+    console.error('Error al borrar el usuario:', err);
+    res.status(500).send('Error al borrar el usuario');
+  }
+};
+
 module.exports = usersCtrl;
