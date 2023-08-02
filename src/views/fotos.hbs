@@ -1,33 +1,128 @@
-<div class="wrapper">
-  <div class="content-wrapper">
-    <div class="route-container">
-      <div class="text-container">
-        <h3>Información de la Ruta</h3>
-        <p class="text-info142">Aquí puedes encontrar información detallada sobre la ruta que te llevará a través de los árboles más destacados de nuestra universidad. Descubre su historia, características y mucho más.</p>
-      </div>
-      <div class="gallery-container">
-        <div class="gallery">
-          <img src="https://fondosmil.com/fondo/6646.jpg" alt="Imagen 1" class="active">
-          <img src="https://c4.wallpaperflare.com/wallpaper/324/1005/197/arboles-bosque-milenarios-naturaleza-wallpaper-preview.jpg" alt="Imagen 2">
-          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80" alt="Imagen 3">
-          <img src="https://images4.alphacoders.com/176/176236.jpg" alt="Imagen 4">
-          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fHw%3D%3D&w=1000&q=80" alt="Imagen 5">
-          <img src="https://www.xtrafondos.com/descargar.php?id=5769&resolucion=2560x1440" alt="Imagen 6">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Información del Árbol</title>
+  <style>
+    /* Estilos de la galería y el efecto de agrandar la imagen */
+    .gallery-container {
+      width: 50%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gallery {
+      width: 100%;
+      height: 200px; /* Altura fija para la galería */
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* Ocultar cualquier contenido adicional que se salga del contenedor */
+      border-radius: 10px;
+    }
+
+    .gallery img {
+      flex: 1;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%; /* Ajustar el tamaño de la imagen al 100% del contenedor */
+      height: 100%; /* Ajustar el tamaño de la imagen al 100% del contenedor */
+    }
+
+    .gallery img.active {
+      transform: scale(1.2);
+    }
+
+    /* Estilo para maximizar la imagen */
+    @media (min-width: 800px) {
+      .gallery {
+        height: 380px; /* Altura fija para la galería al maximizar */
+      }
+
+      .gallery img {
+        width: 90%; /* Reducir el tamaño de la imagen al maximizar */
+        height: 90%; /* Reducir el tamaño de la imagen al maximizar */
+      }
+    }
+
+    /* Resto de los estilos... */
+    .content-wrapper {
+      padding: 20px;
+    }
+
+    .content-wrapper h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .content-wrapper p {
+      text-align: justify;
+      margin-bottom: 10px;
+    }
+
+    .route-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      padding-right: 20px;
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .text-container:hover {
+      transform: scale(1.05);
+    }
+
+    .text-container h3 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .text-info142 {
+      padding-left: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="content-wrapper">
+      <div class="route-container">
+        <div class="text-container">
+          <h3>Información de la Ruta</h3>
+          <p class="text-info142">Aquí puedes encontrar información detallada sobre la ruta que te llevará a través de los árboles más destacados de nuestra universidad. Descubre su historia, características y mucho más.</p>
+        </div>
+        <div class="gallery-container">
+          <div class="gallery">
+            <img src="https://c4.wallpaperflare.com/wallpaper/324/1005/197/arboles-bosque-milenarios-naturaleza-wallpaper-preview.jpg" alt="Imagen 2">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div>
+      <!-- Tabla para mostrar los datos -->
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Programa</th>
-            <th scope="col">Coordenadas</th>
             <th scope="col">Tipo de arbol</th>
             <th scope="col">Imagen</th>
-            <th scope="col">Ver Características</th> <!-- Columna agregada para el botón -->
+            <th scope="col">Ver Características</th>
           </tr>
         </thead>
         <tbody class="contenidoInfo">
@@ -36,123 +131,63 @@
       </table>
     </div>
   </div>
-</div>
 
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
-<link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
-<link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <div id="modal" class="modal">
+    <span class="close" onclick="cerrarModal()">&times;</span>
+    <div class="modal-content">
+      <img src="" alt="Imagen grande" id="imagenGrande">
+    </div>
+  </div>
 
-<script>
-  anychart.onDocumentReady(function () {
-    function obtenerSummerAll() {
-      $.ajax({
-        url: '/getAll',
-        method: 'GET',
-        dataType: 'json',
-        success: function(response) {
-          let datos = "";
-          for(let item in response) {
-            datos += "<tr>";
-            datos += "<td>" + response[item].nombre + "</td>";
-            datos += "<td>" + response[item].apellido + "</td>";
-            datos += "<td>" + response[item].programa + "</td>";
-            datos += "<td>" + response[item].coordenadas + "</td>";
-            datos += "<td>" + response[item].tipoArbol + "</td>";
-            datos += "<td><img src='http://localhost:4000/public/upload/" + response[item].archivocompleto + "' alt='Imagen 1' class='img-fluid'></td>";
-            datos += "<td><a href='ruta_de_tu_pagina_de_caracteristicas_del_arbol?id_arbol=" + response[item]._id + "' class='btn btn-primary'>Ver Características</a></td>";
-            datos += "</tr>";
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+    anychart.onDocumentReady(function () {
+      function obtenerSummerAll() {
+        $.ajax({
+          url: '/getAll',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response) {
+            let datos = "";
+            for(let item in response) {
+              datos += "<tr>";
+              datos += "<td>" + response[item].nombre + "</td>";
+              datos += "<td>" + response[item].apellido + "</td>";
+              datos += "<td>" + response[item].programa + "</td>";
+              datos += "<td>" + response[item].tipoArbol + "</td>";
+              datos += "<td><img src='http://localhost:4000/public/upload/" + response[item].archivocompleto + "' alt='Imagen 1' class='img-fluid' onclick='mostrarImagenGrande(this)'></td>";
+              datos += "<td><a href='ruta_de_tu_pagina_de_caracteristicas_del_arbol?id_arbol=" + response[item]._id + "' class='btn btn-primary'>Ver Características</a></td>";
+              datos += "</tr>";
+            }
+            $('.contenidoInfo').html(datos);
+          },
+          error: function(error) {
+            console.log("ERROR -------- " + error);
+            console.error(error);
           }
-          $('.contenidoInfo').html(datos);
-        },
-        error: function(error) {
-          console.log("ERROR -------- " + error);
-          console.error(error);
-        }
-      });
+        });
+      }
+
+      obtenerSummerAll();
+    });
+
+    function mostrarImagenGrande(img) {
+      var modal = document.getElementById("modal");
+      var imagenGrande = document.getElementById("imagenGrande");
+      imagenGrande.src = img.src;
+      modal.style.display = "block";
     }
 
-    obtenerSummerAll();
-  });
-</script>
-
-<style type="text/css">
-  .content-wrapper {
-    padding: 20px;
-  }
-
-  .content-wrapper h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .content-wrapper p {
-    text-align: justify;
-    margin-bottom: 10px;
-  }
-
-  .route-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-  }
-
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    padding-right: 20px;
-    border-radius: 10px;
-    background-color: #f2f2f2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .text-container:hover {
-    transform: scale(1.05);
-  }
-
-  .text-container h3 {
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
-  .text-info142 {
-    padding-left: 25px;
-  }
-
-  .gallery-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-  }
-
-  .gallery {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-
-  .gallery img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .gallery img.active {
-    opacity: 1;
-  }
-</style>
+    function cerrarModal() {
+      var modal = document.getElementById("modal");
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
