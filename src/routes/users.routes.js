@@ -15,7 +15,17 @@ router.post("/users/signup", singup);
 
 router.get("/users/signin", renderSigninForm);
 
-router.post("/users/signin", signin);
+router.post('/users/signin', passport.authenticate('local', {
+  failureRedirect: '/users/signin', // Redirige a la página de inicio de sesión si hay un error de autenticación.
+  failureFlash: true
+}), (req, res) => {
+  // Redirección personalizada después del inicio de sesión exitoso
+  if (req.user.email === 'maria@gmail.com') {
+    res.redirect('/users'); // Redirige a la ventana "about" si el usuario es "maria@gmail.com".
+  } else {
+    res.redirect('/home'); // Redirige a la ventana "home" si el usuario no es "maria@gmail.com".
+  }
+});
 
 router.get("/users/logout", logout);
 
