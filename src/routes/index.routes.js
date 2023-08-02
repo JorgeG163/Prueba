@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Controllers
-const { renderIndex, renderAbout, renderHome, renderInfo, renderMapa, renderFotos, renderFormulario } = require("../controllers/index.controller");
+const { renderIndex, renderAbout, renderHome, renderInfo, renderMapa, renderFotos, renderFormulario, renderHuellacarbono } = require("../controllers/index.controller");
 
 const { SaveForm }= require("../controllers/formulario.controller"); 
 
@@ -13,7 +13,7 @@ router.get("/info", renderInfo);
 router.get("/mapa", renderMapa);
 router.get("/fotos", renderFotos);
 router.get("/formulario", renderFormulario);
-
+outer.get("/CO2", renderHuellacarbono);
 
 router.post("/images", SaveForm);
 
