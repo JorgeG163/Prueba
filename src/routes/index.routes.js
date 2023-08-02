@@ -13,7 +13,7 @@ router.get("/info", renderInfo);
 router.get("/mapa", renderMapa);
 router.get("/fotos", renderFotos);
 router.get("/formulario", renderFormulario);
-outer.get("/CO2", renderHuellacarbono);
+router.get("/CO2", renderHuellacarbono);
 
 router.post("/images", SaveForm);
 
