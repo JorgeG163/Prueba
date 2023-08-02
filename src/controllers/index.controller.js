@@ -28,6 +28,9 @@ indexCtrl.renderFormulario= (req, res) => {
   res.render('formulario');
 };
 
+indexCtrl.renderHuellacarbono= (req, res) => {
+  res.render('CO2');
+};
 
 
 
