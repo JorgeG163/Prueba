@@ -29,4 +29,13 @@ router.post('/users/signin', passport.authenticate('local', {
 
 router.get("/users/logout", logout);
 
+// Ruta para mostrar la lista de usuarios
+router.get('/users', showUsers);
+
+// Ruta para agregar un nuevo usuario
+router.post("/users/add", addUser);
+
+// Ruta para borrar un usuario
+router.delete("/users/delete/:userId", deleteUser);
+
 module.exports = router;
