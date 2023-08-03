@@ -29,6 +29,18 @@ const formularioSchema = new Schema({
     type: String,
     required: true
   },
+  densidaddelaire: {
+    type: Number,
+    required: true
+  },
+  tasadefotosintesis: {
+    type: Number,
+    required: true
+  },
+  area: {
+    type: Number,
+    required: true
+  },
   tipoArbol: {
     type: String,
     required: true
