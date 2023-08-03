@@ -77,7 +77,7 @@ formularioCtrl.SaveForm = async (req, res) => {
       await nuevoFormulario.save();
 
       // Redirige a la página info.hbs
-      res.redirect('/mapa');
+      res.redirect('/about');
     }
   } catch (error) {
     // Maneja el error de guardar el formulario
