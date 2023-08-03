@@ -134,6 +134,7 @@
               <th scope="col">Apellido</th>
               <th scope="col">Programa</th>
               <th scope="col">Tipo de arbol</th>
+              <th scope="col">Oxigeno</th>
               <th scope="col">Imagen</th>
               <th scope="col">Ver Características</th>
             </tr>
@@ -175,6 +176,7 @@
               datos += "<td>" + response[item].apellido + "</td>";
               datos += "<td>" + response[item].programa + "</td>";
               datos += "<td>" + response[item].tipoArbol + "</td>";
+              datos += "<td>" + response[item].resultado + "</td>";
               datos += "<td><img src='http://localhost:4000/public/upload/" + response[item].archivocompleto + "' alt='Imagen 1' class='img-fluid' onclick='mostrarImagenGrande(this)'></td>";
               datos += "<td><a href='ruta_de_tu_pagina_de_caracteristicas_del_arbol?id_arbol=" + response[item]._id + "' class='btn btn-primary'>Ver Características</a></td>";
               datos += "</tr>";
