@@ -28,7 +28,21 @@ const formularioSchema = new Schema({
   archivocompleto: {
     type: String,
     required: true
-  }
+  },
+  estadodesalud:{
+    type: String,
+    required: true
+  },
+  tasadefotosintesis:{
+    type: String,
+    required: true
+  }, 
+  denisdaddelaire:{
+    type: String,
+    required: true
+  },
+
+
 });
 
 
