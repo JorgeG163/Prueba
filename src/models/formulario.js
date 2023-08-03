@@ -34,15 +34,15 @@ const formularioSchema = new Schema({
     required: true
   },
   tasadefotosintesis: {
-    type: Number,
+    type: String,
     required: true
   },
   area: {
-    type: Number,
+    type: String,
     required: true
   },
   denisdaddelaire: {
-    type: Number,
+    type: String,
     required: true
   },
   tipoArbol: {
