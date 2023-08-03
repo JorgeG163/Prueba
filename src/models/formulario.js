@@ -41,7 +41,7 @@ const formularioSchema = new Schema({
     type: String,
     required: true
   },
-  denisdaddelaire: {
+  densidaddelaire: {
     type: String,
     required: true
   },
