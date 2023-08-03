@@ -16,6 +16,16 @@
             z-index: 1; /* Asegura que el contenedor esté por encima de otros elementos */
         }
 
+        /* Estilos para el gif */
+        .opaque-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         /* Estilos para ajustar el tamaño del logo */
         .logo {
             max-width: 100px; /* Ajusta el valor según el tamaño deseado */
@@ -31,7 +41,9 @@
 </head>
 <body>
     <!-- Contenedor opaco para tapar el contenido no deseado -->
-    <div class="opaque-container"></div>
+    <div class="opaque-container">
+        <img src="/public/img/gif_signup.gif" alt="Background Gif">
+    </div>
 
     <div class="container form-container"> <!-- Agrega la clase 'form-container' al contenedor del formulario -->
         <div class="row">
