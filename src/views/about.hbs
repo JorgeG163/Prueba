@@ -9,7 +9,7 @@
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
   <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
   <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
-  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  
   <style type="text/css">
     .content-wrapper {
       padding: 20px;
@@ -122,117 +122,40 @@
       
       
       <script>
-  document.getElementById("copyLongitudeButton").addEventListener("click", function () {
-    const markerPosition = document.querySelector(".marker-position");
-    const coordinateText = markerPosition.textContent;
-    const longitude = coordinateText.substring(coordinateText.indexOf(":") + 1).split(",")[1].trim();
+      document.getElementById("copyLongitudeButton").addEventListener("click", function () {
+     const markerPosition = document.querySelector(".marker-position");
+     const coordinateText = markerPosition.textContent;
+     const longitude = coordinateText.substring(coordinateText.indexOf(":") + 1).split(",")[1].trim();
 
     // Crear un elemento de textarea oculto para copiar el texto al portapapeles
-    const textarea = document.createElement("textarea");
-    textarea.value = longitude;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+     const textarea = document.createElement("textarea");
+     textarea.value = longitude;
+     document.body.appendChild(textarea);
+     textarea.select();
+     document.execCommand("copy");
+     document.body.removeChild(textarea);
 
-    // Mostrar una notificación o mensaje al usuario
-    alert("La longitud se ha copiado al portapapeles: " + longitude);
-  });
+     // Mostrar una notificación o mensaje al usuario
+      alert("La longitud se ha copiado al portapapeles: " + longitude);
+      });
 
-  document.getElementById("copyLatitudeButton").addEventListener("click", function () {
-    const markerPosition = document.querySelector(".marker-position");
-    const coordinateText = markerPosition.textContent;
-    const latitude = coordinateText.substring(coordinateText.indexOf(":") + 1).split(",")[0].trim();
+      document.getElementById("copyLatitudeButton").addEventListener("click", function () {
+     const markerPosition = document.querySelector(".marker-position");
+     const coordinateText = markerPosition.textContent;
+     const latitude = coordinateText.substring(coordinateText.indexOf(":") + 1).split(",")[0].trim();
 
-    // Crear un elemento de textarea oculto para copiar el texto al portapapeles
-    const textarea = document.createElement("textarea");
-    textarea.value = latitude;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+      // Crear un elemento de textarea oculto para copiar el texto al portapapeles
+         const textarea = document.createElement("textarea");
+         textarea.value = latitude;
+         document.body.appendChild(textarea);
+         textarea.select();
+         document.execCommand("copy");
+         document.body.removeChild(textarea);
 
-    // Mostrar una notificación o mensaje al usuario
-    alert("La latitud se ha copiado al portapapeles: " + latitude);
-  });
-</script>
-
-
-
-
-      <!-- contenedor de grafica -->
-      <div id="outer-container585">
-        <div id="inner-container585">
-          <div id="container585"></div>
-        </div>
-        <div id="datos"></div> 
-      </div>
-      <script>
-        anychart.onDocumentReady(function () {
-          var chart = anychart.column();
-          chart.animation(true);
-          chart.title('Numero de árboles clasificados por especie');
-
-          function obtenerDatos() {
-            $.ajax({
-              url: '/datos',
-              method: 'GET',
-              success: function(response) {
-                actualizarGrafica(response);
-              },
-              error: function(error) {
-                console.error(error);
-              }
-            });
-          }
-
-          function actualizarGrafica(datos) {
-            chart.removeSeries(0); // Elimina la serie existente antes de agregar una nueva
-           
-            datos.sort(function(a, b) {
-              // Ordena los datos por el valor de X en orden ascendente
-              return a[0].localeCompare(b[0]);
-            });
-
-            var series = chart.column(datos);
-
-            series.tooltip().titleFormat('{%X}');
-
-            series
-              .tooltip()
-              .position('center-top')
-              .anchor('center-bottom')
-              .offsetX(0)
-              .offsetY(5);
-            chart.yScale().minimum(0);
-            chart.tooltip().positionMode('point');
-            chart.interactivity().hoverMode('by-x');
-            chart.xAxis().title('Árboles');
-            chart.yAxis().title('Cantidad');
-            chart.container('container585');
-            chart.background().enabled(false);
-            chart.draw();
-          }
-
-          obtenerDatos();
-          setInterval(obtenerDatos, 5000);
-        });
-      </script>
-      <!-- Final del contenedor de grafica -->
-
-      <div id="codigo-qr"></div>
-
-      <script>
-        // Obtener la URL de la página actual
-        var url = window.location.href;
-
-        // Generar el código QR
-        var qrcode = new QRCode(document.getElementById("codigo-qr"), {
-          text: url,
-          width: 256,
-          height: 256
-        });
-      </script>
+          // Mostrar una notificación o mensaje al usuario
+        alert("La latitud se ha copiado al portapapeles: " + latitude);
+       });
+        </script>
     </div>
   </div>
 </body>
