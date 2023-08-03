@@ -29,7 +29,7 @@ formularioCtrl.SaveForm = async (req, res) => {
 
 
     let errors = [];
-    const { nombre, apellido, programa, nombredelaespecie, características, estadodesalud, coordenadas, tipoArbol, file } = req.body;
+    const { nombre, apellido, programa, nombredelaespecie, caracteristicas, estadodesalud, latitud, longitud, tasadefotosintesis, area, tipoArbol, denisdaddelaire, file } = req.body;
 
     if (nombre.length < 3) {
       errors.push({ text: "Ingrese un nombre válido" });
@@ -46,9 +46,13 @@ formularioCtrl.SaveForm = async (req, res) => {
         apellido,
         programa,
         nombredelaespecie,
-        características,
+        caracteristicas,
         estadodesalud,
-        coordenadas,
+        latitud,
+        longitud,
+        tasadefotosintesis,
+        area,
+        denisdaddelaire,
         tipoArbol
       });
     } else {
@@ -57,11 +61,15 @@ formularioCtrl.SaveForm = async (req, res) => {
         nombre,
         apellido,
         programa,
-        nombredelaespecie,
-        características,
-        estadodesalud,
-        coordenadas,
         tipoArbol,
+        nombredelaespecie,
+        caracteristicas,
+        estadodesalud,
+        latitud,
+        longitud,
+        tasadefotosintesis,
+        area,
+        denisdaddelaire, 
         archivocompleto
       });
 
@@ -83,7 +91,7 @@ formularioCtrl.SaveForm = async (req, res) => {
 formularioCtrl.formulario = async (req, res) => {
   try {
     let errors = [];
-    const { nombre, apellido, programa, nombredelaespecie, características, estadodesalud, coordenadas, tipoArbol } = req.body;
+    const { nombre, apellido, programa, nombredelaespecie, caracteristicas, estadodesalud, latitud, longitud, tasadefotosintesis, area, denisdaddelaire, tipoArbol } = req.body;
 
     if (nombre.length < 3) {
       errors.push({ text: "Ingrese un nombre válido" });
@@ -100,9 +108,13 @@ formularioCtrl.formulario = async (req, res) => {
         apellido,
         programa,
         nombredelaespecie,
-        características,
+        caracteristicas,
         estadodesalud,
-        coordenadas,
+        latitud,
+        longitud,
+        tasadefotosintesis,
+        area,
+        denisdaddelaire, 
         tipoArbol
       });
     } else {
@@ -112,9 +124,13 @@ formularioCtrl.formulario = async (req, res) => {
         apellido,
         programa,
         nombredelaespecie,
-        características,
+        caracteristicas,
         estadodesalud,
-        coordenadas,
+        latitud,
+        longitud,
+        tasadefotosintesis,
+        area,
+        denisdaddelaire, 
         tipoArbol
       });
 
