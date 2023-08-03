@@ -27,7 +27,10 @@
            <input type="text" class="form-control" name="estadodesalud" placeholder="Estado de salud (Ej: Apariencia, presencia de enferdades o plagas)" value="{{estadodesalud}}">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="coordenadas" placeholder="Coordenadas (Ej: 9.31520305667501, -75.3884118779454)" value="{{coordenadas}}">
+          <input type="text" class="form-control" name="latitud" placeholder="Latitud (Ej: 9.31520305667501)" value="{{latitud}}">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="longitud" placeholder="Longitud (Ej: -75.3884118779454)" value="{{longitud}}">
         </div>
         <div class="form-group">
           <label for="tipoArbol">Tipo de árbol</label>
@@ -38,11 +41,40 @@
             <option value="Anón">Anón</option>
             <option value="Guanacaste">Guanacaste</option>
           </select>
+          <p>Ingrese la información requierida para la realización del calculo de CO2:</p>
+      <div class="form-group">
+        <input type="text" class="form-control" name="tasadefotosintesis" placeholder="tasa de fotosintesis (Ej: árbol x = 10)" value="{{tasadefotosintesis}}">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="área" placeholder="Área (universidad en m^2)" value="{{area}}">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="densidaddelaire" placeholder=" (Densidad del aire: 1.225 g/m^3)" value="{{denisdaddelaire}}">
+      </div>
+      <!-- Botón para realizar el cálculo -->
+      <button onclick="calcularMultiplicacion()">Calcular</button>
+    </div>
+    <!-- Mostrar el resultado del cálculo aquí -->
+    <div id="resultado"></div>
+    <script>
+      // Función para realizar el cálculo y mostrar el resultado
+      function calcularMultiplicacion() {
+        // Obtener los valores ingresados por el usuario
+        const tasaFotosintesis = parseFloat(document.querySelector('input[name="tasadefotosintesis"]').value);
+        const area = parseFloat(document.querySelector('input[name="área"]').value);
+        const densidadAire = parseFloat(document.querySelector('input[name="densidaddelaire"]').value);
+        // Realizar el cálculo de la multiplicación
+        const resultado = tasaFotosintesis * area * densidadAire;
+        // Mostrar el resultado en el elemento con el id "resultado"
+        document.getElementById("resultado").innerText = "La cantidad de gramos de óxigeno generado por este árbol es: " + resultado;
+      }
+      </script>
         </div>     
          <div class="form-group">
           <label for="arbolFoto">Foto del árbol</label>
           <input type="file" id="uploadImg" name="image" required>
          </div>
+         <div class="card-body">
         <button class="btn btn-primary btn-block">
           Registrar
         </button>
