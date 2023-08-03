@@ -1,51 +1,195 @@
-<div class="wrapper">
-  <div class="content-wrapper">
-    <style type="text/css">
-      .content-wrapper {
-        padding: 20px;
-      }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ Mapa }}</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <style type="text/css">
+    .content-wrapper {
+      padding: 20px;
+    }
 
-      .content-wrapper h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-        font-size: 24px;
-      }
+    .content-wrapper h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-      .content-wrapper p {
-        text-align: justify;
-        margin-bottom: 10px;
-        color: #555;
-        font-size: 16px;
-      }
-      
-      .container-561 {
-        background-color: #f5f5f5;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-      }
+    .content-wrapper p {
+      text-align: justify;
+      margin-bottom: 10px;
+    }
 
-      .container-561 p:first-child {
-        margin-top: 0;
-      }
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  
+    .map-container {
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
 
-      .container-561 p:last-child {
-        margin-bottom: 0;
-      }
+    #codigo-qr {
+      display: block;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      background-color: white;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-    </style>
+    #container585 {
+      height: 200px;
+      margin-top: 20px;
+      width: 100%;
+    }
+    
+  </style>
+</head>
 
-    <div class="container-561">
-      <h2>About</h2>
-      <p>La Universidad de Sucre, comprometida con la conservación del medio ambiente y el embellecimiento de su campus, ha lanzado una iniciativa emocionante: ¡plantar árboles! Conscientes de la importancia de los árboles para nuestro planeta, la universidad busca crear conciencia y promover un entorno más verde y sostenible.</p>
+<body>
+  <div class="wrapper">
+    <div class="content-wrapper">
+      <div class="container">
+        <h2>Mapa</h2>
+        <p>En esta sección puedes visualizar un mapa satelital de nuestra institución. En la que podrás seleccionar el árbol y/o monumento que quieras ver, junto con sus características</p>
 
-      <p>Nuestro objetivo es transformar nuestro campus en un oasis natural lleno de vida y color. Cada árbol plantado no solo contribuirá a mejorar la calidad del aire, sino que también proporcionará sombra, refugio y hogar a diversas especies de flora y fauna.</p>
+        <div id="map" class="map-container"></div>
+        <div class="marker-position"></div>
+        <script>
+          const map = L.map("map").setView([9.315161726912077, -75.38832306861879], 18);
 
-      <p>Pero no solo nos enfocamos en los árboles. La Universidad de Sucre también valora su historia y patrimonio. A través de fotografías, queremos mostrar los impresionantes árboles y monumentos que ya existen dentro de nuestra institución. Estos testigos silenciosos de nuestra historia nos conectan con nuestro pasado y nos inspiran a cuidar nuestro entorno.</p>
+          // Capa de azulejos de OpenStreetMap
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
 
-      <p>Únete a nosotros en esta maravillosa iniciativa. Siéntete parte del cambio y sé testigo de cómo juntos transformamos nuestro campus en un lugar más verde y hermoso. ¡Cada árbol cuenta y cada fotografía nos muestra la grandeza de nuestra Universidad de Sucre!</p>
+          // Manejar el evento de clic en el mapa
+          map.on("click", function (e) {
+            const markerPlace = document.querySelector(".marker-position");
+            markerPlace.textContent = `Nueva posición del marcador: ${e.latlng.lat}, ${e.latlng.lng}`;
+
+            const marker = L.marker(e.latlng, { draggable: true })
+              .addTo(map)
+              .bindPopup('<button type="button" class="remove">Eliminar marcador</button>')
+              .on("popupopen", function () {
+                const btn = document.querySelector(".remove");
+                btn.addEventListener("click", function () {
+                  markerPlace.textContent = "Marcador eliminado";
+                  map.removeLayer(marker);
+                });
+              })
+              .on("dragend", function () {
+                markerPlace.textContent = `Posición cambiada: ${this.getLatLng().lat}, ${this.getLatLng().lng}`;
+              });
+
+            // Enviar los datos del marcador al servidor
+            const data = {
+              lat: e.latlng.lat,
+              lng: e.latlng.lng
+            };
+
+            fetch('/mapa', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+          });
+        </script>
+      </div>
+
+      <!-- contenedor de grafica -->
+      <div id="outer-container585">
+        <div id="inner-container585">
+          <div id="container585"></div>
+        </div>
+        <div id="datos"></div> 
+      </div>
+      <script>
+        anychart.onDocumentReady(function () {
+          var chart = anychart.column();
+          chart.animation(true);
+          chart.title('Numero de árboles clasificados por especie');
+
+          function obtenerDatos() {
+            $.ajax({
+              url: '/datos',
+              method: 'GET',
+              success: function(response) {
+                actualizarGrafica(response);
+              },
+              error: function(error) {
+                console.error(error);
+              }
+            });
+          }
+
+          function actualizarGrafica(datos) {
+            chart.removeSeries(0); // Elimina la serie existente antes de agregar una nueva
+           
+            datos.sort(function(a, b) {
+              // Ordena los datos por el valor de X en orden ascendente
+              return a[0].localeCompare(b[0]);
+            });
+
+            var series = chart.column(datos);
+
+            series.tooltip().titleFormat('{%X}');
+
+            series
+              .tooltip()
+              .position('center-top')
+              .anchor('center-bottom')
+              .offsetX(0)
+              .offsetY(5);
+            chart.yScale().minimum(0);
+            chart.tooltip().positionMode('point');
+            chart.interactivity().hoverMode('by-x');
+            chart.xAxis().title('Árboles');
+            chart.yAxis().title('Cantidad');
+            chart.container('container585');
+            chart.background().enabled(false);
+            chart.draw();
+          }
+
+          obtenerDatos();
+          setInterval(obtenerDatos, 5000);
+        });
+      </script>
+      <!-- Final del contenedor de grafica -->
+
+      <div id="codigo-qr"></div>
+
+      <script>
+        // Obtener la URL de la página actual
+        var url = window.location.href;
+
+        // Generar el código QR
+        var qrcode = new QRCode(document.getElementById("codigo-qr"), {
+          text: url,
+          width: 256,
+          height: 256
+        });
+      </script>
     </div>
-
   </div>
-</div>
+</body>
+</html>
