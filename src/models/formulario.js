@@ -13,36 +13,12 @@ const formularioSchema = new Schema({
     type: String,
     required: true
   },
-  nombredelaespecie: {
-    type: String,
-    required: true
-  },
-  caracteristicas: {
-    type: String,
-    required: true
-  },
-  estadodesalud: {
-    type: String,
-    required: true
-  },
   latitud: {
     type: Number,
     required: true
   },
   longitud: {
     type: Number,
-    required: true
-  },
-  tasadefotosintesis: {
-    type: String,
-    required: true
-  },
-  area: {
-    type: String,
-    required: true
-  },
-  densidaddelaire: {
-    type: String,
     required: true
   },
   tipoArbol: {
