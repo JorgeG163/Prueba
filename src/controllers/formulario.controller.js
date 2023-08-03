@@ -77,14 +77,14 @@ formularioCtrl.SaveForm = async (req, res) => {
       await nuevoFormulario.save();
 
       // Redirige a la página info.hbs
-      res.redirect('/about');
+      res.redirect('/fotos');
     }
   } catch (error) {
     // Maneja el error de guardar el formulario
     console.error(error);
     // Redirige a una página de error o muestra un mensaje de error
     req.flash("error_msg", "Error al almacenar los datos");
-    res.redirect('/formulario');
+    res.redirect('/about');
   }
 };
 
@@ -138,14 +138,14 @@ formularioCtrl.formulario = async (req, res) => {
       await nuevoFormulario.save();
 
       // Redirige a la página info.hbs
-      res.redirect('/mapa');
+      res.redirect('/fotos');
     }
   } catch (error) {
     // Maneja el error de guardar el formulario
     console.error(error);
     // Redirige a una página de error o muestra un mensaje de error
     req.flash("error_msg", "Error al almacenar los datos");
-    res.redirect('/formulario');
+    res.redirect('/about');
   }
 };
 
@@ -157,7 +157,7 @@ formularioCtrl.getInfo = async (req, res) => {
   } catch (error) {
     console.error(error);
     req.flash("error_msg", "Error al obtener la información");
-    res.redirect('/formulario');
+    res.redirect('/about');
   }
 };
 
