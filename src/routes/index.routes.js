@@ -2,18 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 // Controllers
-const { renderIndex, renderAbout, renderHome, renderInfo, renderMapa, renderFotos, renderFormulario, renderHuellacarbono } = require("../controllers/index.controller");
+const { renderIndex, renderAbout, renderHome, renderInfo, renderMapa, renderFotos, renderFormulario, renderHuellacarbono, renderPruebas } = require("../controllers/index.controller");
 
 const { SaveForm }= require("../controllers/formulario.controller"); 
 
 router.get("/", renderIndex);
 router.get("/about", renderAbout);
 router.get("/home", renderHome);
-router.get("/info", renderInfo);
+router.get("/info", renderInfo); 
 router.get("/mapa", renderMapa);
 router.get("/fotos", renderFotos);
 router.get("/formulario", renderFormulario);
 router.get("/CO2", renderHuellacarbono);
+router.get("/pruebas", renderPruebas);
 
 router.post("/images", SaveForm);
 

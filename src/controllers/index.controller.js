@@ -32,6 +32,10 @@ indexCtrl.renderHuellacarbono= (req, res) => {
   res.render('CO2');
 };
 
+indexCtrl.renderPruebas= (req, res) => {
+  res.render('pruebas');
+};
+
 
 
 
